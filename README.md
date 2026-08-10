@@ -1,4 +1,5 @@
 # Git Activity Report
+<img width="762" height="817" alt="GitActivityReport_0NoHkPiBsZ" src="https://github.com/user-attachments/assets/e33d712d-7501-49e0-bd4e-1c7f84be466f" />
 
 Turns git history into a styled Excel report, dated in the **Jalali (Persian)** calendar.
 Built for handing a manager a clear picture of what was worked on, and when.
