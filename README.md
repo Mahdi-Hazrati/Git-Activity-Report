@@ -1,4 +1,5 @@
 # Git Activity Report
+<img width="762" height="817" alt="GitActivityReport_0NoHkPiBsZ" src="https://github.com/user-attachments/assets/a736e10d-bbe3-4ded-990e-154e6142ede0" />
 
 <div align="center">
 
