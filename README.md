@@ -1,169 +1,215 @@
 # Git Activity Report
-<img width="762" height="817" alt="GitActivityReport_0NoHkPiBsZ" src="https://github.com/user-attachments/assets/e33d712d-7501-49e0-bd4e-1c7f84be466f" />
 
-Turns git history into a styled Excel report, dated in the **Jalali (Persian)** calendar.
-Built for handing a manager a clear picture of what was worked on, and when.
+<div align="center">
 
-Works three ways — a **portable .exe** needing nothing installed, a **desktop app**
-from source, or the **command line** for scripting. All share one engine, so every
-route produces identical reports.
+**Turn Git history into a polished Excel activity report using the Jalali (Persian) calendar.**
+
+Built for developers who need to give managers a clear picture of what was worked on—and when.
+
+[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-v1.0.0-0078D4?style=for-the-badge&logo=windows11&logoColor=white)](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/download/v1.0.0/GitActivityReport.exe)
+
+[![Release](https://img.shields.io/github/v/release/Mahdi-Hazrati/Git-Activity-Report?style=flat-square)](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/tag/v1.0.0)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white)](#run-from-source)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?style=flat-square&logo=windows11&logoColor=white)](#quick-start)
+
+[Download](#download) · [Quick start](#quick-start) · [Command line](#command-line) · [Workbook contents](#whats-in-the-workbook) · [Troubleshooting](#troubleshooting)
+
+</div>
 
 ---
 
-## 1. The portable app (no install)
+## Overview
 
-Grab **`dist/GitActivityReport.exe`** and run it. One file, ~23 MB, no Python
-required. Copy it to a USB stick, a colleague's laptop, anywhere.
+Git Activity Report reads real Git repositories and produces a styled `.xlsx` workbook containing summaries, daily activity, commits, and changed files.
 
-The only requirement on the target machine is **git** — the report is read from
-real repositories, so git must be installed and on the PATH.
+Use it in any of three ways:
 
-Settings and reports stay **beside the .exe** (`gitreport-config.json` and
-`reports/`), so the whole thing travels together. If the exe sits somewhere
-read-only, settings fall back to your user folder automatically.
+| Option | Best for | Requirements |
+| --- | --- | --- |
+| **Portable Windows app** | The fastest start | Git only |
+| **Desktop app from source** | Development and customization | Python 3.9+ and Git |
+| **Command line** | Scripts and repeatable workflows | Python 3.9+ and Git |
 
-### Rebuilding it
+All three routes use the same reporting engine, so they produce identical reports.
+
+## Highlights
+
+- Jalali year, month, day, and custom date-range support
+- One-click Windows executable with no Python installation required
+- Reports for one developer or the whole team
+- Multiple repositories combined into one workbook
+- Manager-friendly summary with charts and expandable details
+- Configurable workbook columns
+- Generated-code detection for more meaningful totals
+- Saved desktop settings for fast recurring reports
+
+## Download
+
+### Windows portable app
+
+[![Download Git Activity Report](https://img.shields.io/badge/Download-GitActivityReport.exe-success?style=for-the-badge&logo=github)](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/download/v1.0.0/GitActivityReport.exe)
+
+Download **`GitActivityReport.exe`**, then run it—no installer or Python environment is required.
+
+> [!IMPORTANT]
+> Git must be installed and available on your system `PATH`. The application reads report data directly from Git repositories.
+
+Settings and reports are stored beside the executable:
+
+```text
+GitActivityReport.exe
+gitreport-config.json
+reports/
+```
+
+This makes the app portable: you can keep it on a USB drive or copy it to another computer. If the executable is in a read-only folder, settings automatically fall back to your user folder.
+
+## Quick start
+
+1. [Download `GitActivityReport.exe`](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/download/v1.0.0/GitActivityReport.exe).
+2. Open the application.
+3. Enter your name and email as they appear in your Git commits—or enable **Report on everyone**.
+4. Choose a Jalali period using a preset or a custom date.
+5. Add one repository, or scan a folder for multiple repositories.
+6. Choose the output folder, workbook name, title, and visible columns.
+7. Select **Generate report**.
+
+Your settings are restored the next time the app starts, so routine reports usually take only two clicks.
+
+When multiple projects are selected, the app creates **one workbook** with an **Overview** sheet followed by four sheets for each project.
+
+## Run from source
+
+### Requirements
+
+- Python 3.9 or newer
+- Git available on `PATH`
+
+### Installation
+
+```bash
+git clone https://github.com/Mahdi-Hazrati/Git-Activity-Report.git
+cd Git-Activity-Report
+pip install -r requirements.txt
+```
+
+### Start the desktop app
+
+Double-click **`Report GUI.bat`**, or run:
+
+```bash
+python gui.py
+```
+
+### Build the Windows executable
 
 ```bash
 pip install -r requirements.txt
 python build_exe.py
 ```
 
----
+The generated executable is written to `dist/GitActivityReport.exe`.
 
-## 2. Setup from source
+## Command line
 
-```bash
-cd tmp/gitreport
-pip install -r requirements.txt
-```
-
-Requires **Python 3.9+** and `git` on your PATH.
-
----
-
-## 3. Using the app
-
-Run the .exe, double-click **`Report GUI.bat`**, or:
+Generate a report for one Jalali month:
 
 ```bash
-python gui.py
+python main.py 1405/05
 ```
 
-Then:
-
-1. **Your details** — enter your name and email. These match your commits, so
-   the report covers your work only. Tick **Report on everyone** for the whole team.
-2. **Period** — type a Jalali period, or press **This month** / **Last month** /
-   **This year**.
-3. **Projects** — **Add project...** to pick a repository, or **Scan folder...**
-   to find every repo nested under one folder. Tick the ones to include (click the
-   `[x]`, or double-click a row).
-4. **Output** — choose the folder, the file name, and the report title. Leave the
-   file name blank for `report-<period>.xlsx`, or use `{period}` and `{name}`
-   placeholders. **Choose columns...** picks exactly which columns appear.
-5. **Generate report.**
-
-Everything is saved and restored next launch, so routine runs are two clicks.
-
-Multiple projects go into **one workbook**: an **Overview** sheet comparing them,
-then each project's own four sheets.
-
----
-
-## 4. Command line
+Generate a report for a custom Jalali date range:
 
 ```bash
-cd tmp/gitreport
-
-python main.py 1405/05                    # one month
-python main.py 1405/04/20 1405/05/20      # a date range
+python main.py 1405/04/20 1405/05/20
 ```
 
-The report lands in `temp/` next to the script:
+By default, the report is written to:
 
 ```text
 temp/report-1405-04-20_to_1405-05-20.xlsx
 ```
 
-> **All dates you type are Jalali.** Never pass Gregorian dates — `2026/08/09`
-> would be read as Jalali year 2026 and return nothing.
+> [!WARNING]
+> Every date entered in the application or CLI must be Jalali. Do not pass a Gregorian date such as `2026/08/09`; it would be interpreted as Jalali year 2026 and would return no results.
 
-The CLI reports on one repository at a time (`--repo`); for multiple projects in
-a single workbook, use the desktop app.
+The CLI handles one repository at a time with `--repo`. To combine multiple projects in one workbook, use the desktop app.
 
----
+## Choosing a period
 
-## 5. Choosing the period
+A partial date automatically expands to cover the complete period.
 
-You can pass a **year**, **month**, or **day** — a partial date automatically
-widens to cover its whole period.
-
-| What you type | What you get |
+| Input | Result |
 | --- | --- |
-| `1405` | the entire Jalali year |
-| `1405/05` | all of Mordad 1405 |
-| `1405/05/20` | that single day |
-| `1405/04/20 1405/05/20` | a range (two arguments) |
-| `1405/04/20..1405/05/20` | the same range (one argument) |
+| `1405` | Entire Jalali year |
+| `1405/05` | All of Mordad 1405 |
+| `1405/05/20` | One day |
+| `1405/04/20 1405/05/20` | Date range using two arguments |
+| `1405/04/20..1405/05/20` | The same date range using one argument |
 
-`/`, `-`, and `.` all work as separators, so `1405-05` is the same as `1405/05`.
+The separators `/`, `-`, and `.` are supported, so `1405-05` is equivalent to `1405/05`.
 
-The end date must come **after** the start, and the year is always four digits.
-Both rules are enforced with a plain error message rather than a silent empty report.
+The end date must be after the start date, and the year must contain four digits. Invalid input produces a clear error instead of a silent empty report.
 
----
+## Common CLI options
 
-## 6. Common options
-
-| Flag | What it does |
+| Option | Description |
 | --- | --- |
-| `-o <path>` | write to a specific file instead of `temp/` |
-| `--project <name>` | project name in the title (default: `SadadTSP`) |
-| `--hide <cols>` | drop columns you don't want (see §8) |
-| `--all-authors` | include the whole team, not just you |
-| `--author "<name>"` | filter by a specific person; repeatable |
-| `--repo <path>` | report on a different repository |
-| `--open` | open the file in Excel when it finishes |
-| `--merges` | include merge commits (excluded by default) |
-| `--current-branch` | only the checked-out branch (default: all branches) |
-| `-h` | full help |
+| `-o <path>` | Write to a specific file instead of `temp/` |
+| `--project <name>` | Set the project name in the title; default: `SadadTSP` |
+| `--hide <cols>` | Remove selected columns; see [Hiding columns](#hiding-columns) |
+| `--all-authors` | Include the whole team |
+| `--author "<name>"` | Filter by a specific person; repeatable |
+| `--repo <path>` | Report on another repository |
+| `--open` | Open the workbook in Excel after generation |
+| `--merges` | Include merge commits; excluded by default |
+| `--current-branch` | Use only the checked-out branch; all branches are used by default |
+| `-h` | Display full help |
 
-Examples:
+### Examples
+
+Create a team report for one month and open it when ready:
 
 ```bash
-# Whole team, one month, opened when ready
 python main.py 1405/05 --all-authors --open
+```
 
-# Another repo, custom name and output path
+Report on another repository with a custom project name and output path:
+
+```bash
 python main.py 1405 --repo ../../other-project --project "Other App" -o boss.xlsx
 ```
 
-The CLI's default author filter lives in `DEFAULT_AUTHORS` at the top of `main.py`.
-The app instead uses whatever name and email you enter under **Your details**, so
-a fresh install has no identity baked in.
+The CLI's default author filter is stored in `DEFAULT_AUTHORS` at the top of `main.py`. The desktop app uses the name and email entered under **Your details**, so a fresh installation has no identity built in.
 
----
+## What's in the workbook
 
-## 7. What's in the workbook
+### Summary
 
-**Summary** — the sheet to show a manager. Totals, then four sections with inline
-bar charts: what was built by area, type of work with percentages, daily activity,
-and commit titles per day (click **[+]** in the left margin to expand a day).
+The manager-facing sheet. It contains totals and four sections with inline bar charts:
 
-**Daily Task List** — one row per working day: commit count, first/last commit
-time, files touched, lines added/removed, and the day's tasks. Thursdays and
-Fridays are shaded.
+- Work completed by area
+- Work type and percentages
+- Daily activity
+- Commit titles grouped by day
 
-**Commits** — one row per commit: date, time, author, type, scope, title,
-description, file and line counts, short hash.
+Use the **[+]** control in the left margin to expand a day.
 
-**Changed Files** — one row per commit with its files collapsed underneath.
-Click **[+]** to expand.
+### Daily Task List
 
----
+One row per working day with commit count, first and last commit time, files touched, lines added and removed, and the day's tasks. Thursdays and Fridays are shaded.
 
-## 8. Hiding columns
+### Commits
+
+One row per commit with date, time, author, type, scope, title, description, file and line counts, and short hash.
+
+### Changed Files
+
+One row per commit with its changed files collapsed below it. Select **[+]** to expand the file list.
+
+## Hiding columns
+
+Remove columns you do not want in the workbook:
 
 ```bash
 python main.py 1405/05 --hide first,last,span
@@ -177,92 +223,119 @@ first  last  span  weekday  month  author  type  scope  scopes
 types  files  added  removed  tasks  titles  title  descriptions  hash
 ```
 
-Keys apply across sheets — `--hide descriptions` removes that column from both
-**Daily Task List** and **Commits**. A misspelled key stops the run and prints
-the valid list, so a typo never silently produces the wrong report.
+Keys apply across worksheets. For example, `--hide descriptions` removes the description column from both **Daily Task List** and **Commits**.
 
----
+A misspelled key stops the run and displays the valid list, preventing a typo from silently producing the wrong report.
 
-## 9. Reading the numbers correctly
+## Understanding the numbers
 
-Three things worth understanding before sending a report to a manager.
+### Generated code is excluded
 
-**Generated code is excluded.** Machine-produced files — `openapi-spec.json`,
-anything under `src/generated/`, `*.gen.ts`, lockfiles — are counted separately
-and disclosed on their own Summary line. Without this, one day in Mordad 1405
-showed *+52,141 lines from 2 commits*, which was a regenerated API client rather
-than a day's work. The headline totals are hand-written code only.
+Machine-generated files—such as `openapi-spec.json`, files under `src/generated/`, `*.gen.ts`, and lockfiles—are counted separately and disclosed on the Summary sheet.
 
-**"Span (h)" is elapsed time, not hours worked.** It measures first commit to
-last commit that day, so two commits a minute apart show `0`. It is not a timesheet.
+This keeps generated output from distorting the headline totals. For example, one day in Mordad 1405 showed **+52,141 lines from two commits**, but the change came from a regenerated API client rather than a day's handwritten work.
 
-**"Commit Description" is often empty.** It holds the commit *body*, and most
-commits here are subject-only — in one 150-commit report just 9 had a body.
-That column fills up only if you start writing multi-line commit messages.
+### Span is not a timesheet
 
----
+**Span (h)** measures the elapsed time between the first and last commit of a day. Two commits one minute apart therefore show `0`. It does not represent hours worked.
 
-## 10. Troubleshooting
+### Commit descriptions may be empty
 
-**"No commits found for this period."**
-Usually the author filter or the period. Try `--all-authors`, widen the range, or
-check the repo's actual history:
+**Commit Description** contains the commit body. Many commits contain only a subject line, so this field is often blank. It becomes useful when multi-line commit messages are used.
+
+## Troubleshooting
+
+<details>
+<summary><strong>No commits found for this period</strong></summary>
+
+The most common causes are the author filter and selected period. Try `--all-authors`, widen the range, or inspect the repository's oldest commit:
 
 ```bash
-git log --format=%aI | tail -1     # oldest commit (Gregorian)
+git log --format=%aI | tail -1
 ```
 
-**"cannot write ... it is open in Excel"**
-Close the workbook and re-run, or pass a different `-o` path.
+The displayed Git timestamp is Gregorian.
 
-**"range end ... precedes start"**
-The two dates are backwards, or the end year has a typo — e.g. `1404` where
-`1405` was meant.
+</details>
 
-**"is not a git repository"**
-Run from inside the repo, or point at it with `--repo <path>`. In the app, the
-project is skipped and the reason is listed when the run finishes.
+<details>
+<summary><strong>Cannot write the workbook because it is open in Excel</strong></summary>
 
-**The app won't start / no window appears**
-Run `python gui.py` from a terminal to see the error. If it reports no module
-named `tkinter`, reinstall Python with the "tcl/tk and IDLE" option ticked.
+Close the workbook and generate it again, or provide another output path with `-o`.
 
-**A project shows as skipped**
-Either it has no commits in that period, or the author filter excluded them all.
-Tick **Everyone** to confirm which.
+</details>
 
-**Reset the app to defaults**
-Delete `gitreport-config.json`. A corrupt config is ignored automatically rather
-than crashing the app.
+<details>
+<summary><strong>Range end precedes start</strong></summary>
 
----
+The dates are reversed, or the end year contains a typo—for example, `1404` instead of `1405`.
 
-## 11. How the code is organised
+</details>
+
+<details>
+<summary><strong>Path is not a Git repository</strong></summary>
+
+Run the CLI from inside the repository, or select it with `--repo <path>`. In the desktop app, the project is skipped and the reason is shown after the run finishes.
+
+</details>
+
+<details>
+<summary><strong>The app does not start or no window appears</strong></summary>
+
+Run the following command in a terminal to see the underlying error:
+
+```bash
+python gui.py
+```
+
+If Python reports that the `tkinter` module is missing, reinstall Python with **tcl/tk and IDLE** enabled.
+
+</details>
+
+<details>
+<summary><strong>A project is skipped</strong></summary>
+
+The project either has no commits in the selected period, or the author filter removed every matching commit. Enable **Everyone** to check.
+
+</details>
+
+<details>
+<summary><strong>Reset the desktop app</strong></summary>
+
+Delete `gitreport-config.json`. A corrupt configuration file is ignored automatically instead of crashing the application.
+
+</details>
+
+## Project structure
 
 | File | Responsibility |
 | --- | --- |
-| `gui.py` | desktop app (tkinter); runs generation on a worker thread |
-| `main.py` | CLI parsing, validation, wiring |
-| `service.py` | shared engine both front-ends call |
-| `config.py` | settings, portable paths, `gitreport-config.json` |
-| `build_exe.py` | builds the portable single-file executable |
-| `jalali.py` | Jalali parsing, conversion, formatting |
-| `gitlog.py` | runs `git log`, parses commits and file stats |
-| `report.py` | groups commits per day, computes totals |
-| `excel.py` | renders the worksheets |
+| `gui.py` | Tkinter desktop app; runs report generation on a worker thread |
+| `main.py` | CLI parsing, validation, and wiring |
+| `service.py` | Shared engine used by both front ends |
+| `config.py` | Settings, portable paths, and `gitreport-config.json` |
+| `build_exe.py` | Builds the portable single-file executable |
+| `jalali.py` | Jalali parsing, conversion, and formatting |
+| `gitlog.py` | Runs `git log` and parses commits and file statistics |
+| `report.py` | Groups commits by day and computes totals |
+| `excel.py` | Renders the workbook worksheets |
 
-The GUI and CLI both call `service.generate`, so neither duplicates logic and a
-fix reaches both at once.
+The desktop app and CLI both call `service.generate`, so reporting logic is not duplicated and fixes apply to both interfaces.
 
-Reports are written to `temp/` when run from source, or `reports/` beside the
-`.exe`. Either is created automatically. The whole `tmp/` folder is gitignored,
-so nothing here — including your config — is ever committed.
+Reports are written to `temp/` when run from source, or `reports/` beside the executable. The required folder is created automatically.
+
+## Credits
+
+Git Activity Report — **© M4hd1**
+
+The attribution appears in the application footer, the workbook's Summary sheet, and the workbook file properties.
 
 ---
 
-## 12. Credits
+<div align="center">
 
-Git Activity Report — **(c) M4hd1**
+[![Download for Windows](https://img.shields.io/badge/Download_for_Windows-v1.0.0-0078D4?style=for-the-badge&logo=windows11&logoColor=white)](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/download/v1.0.0/GitActivityReport.exe)
 
-The attribution appears in the app footer, on the report's Summary sheet, and in
-the workbook's file properties.
+**Ready to generate your first report? Download the portable app and get started.**
+
+</div>
