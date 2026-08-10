@@ -1,11 +1,12 @@
 # Git Activity Report
-<img width="762" height="817" alt="GitActivityReport_0NoHkPiBsZ" src="https://github.com/user-attachments/assets/a736e10d-bbe3-4ded-990e-154e6142ede0" />
 
 <div align="center">
 
 **Turn Git history into a polished Excel activity report using the Jalali (Persian) calendar.**
 
 Built for developers who need to give managers a clear picture of what was worked on—and when.
+
+<img width="762" height="817" alt="GitActivityReport_0NoHkPiBsZ" src="https://github.com/user-attachments/assets/a736e10d-bbe3-4ded-990e-154e6142ede0" />
 
 [![Download for Windows](https://img.shields.io/badge/Download_for_Windows-v1.0.0-0078D4?style=for-the-badge&logo=windows11&logoColor=white)](https://github.com/Mahdi-Hazrati/Git-Activity-Report/releases/download/v1.0.0/GitActivityReport.exe)
 
