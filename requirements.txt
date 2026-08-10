@@ -1,0 +1,15 @@
+# Git activity report generator - dependencies
+# Install with:  pip install -r requirements.txt
+
+# Writes the .xlsx workbook (styling, column widths, collapsible row groups).
+openpyxl==3.1.5
+
+# Gregorian <-> Jalali (Persian) calendar conversion, including leap years.
+jdatetime==6.0.2
+
+# Pulled in automatically by the two above; pinned for reproducible installs.
+et-xmlfile==2.0.0
+jalali-core==1.0.0
+
+# Only needed to build the portable .exe (python build_exe.py), not to run the app.
+pyinstaller==6.22.0
